@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Updater\ValueObject;
+namespace App;
 
 use App\Updater\Exception\InvalidQualityValueException;
 
@@ -13,8 +13,8 @@ final class Item
 
     public function __construct(
         private readonly string $name,
-        private int $sell_in,
-        private int $quality
+        public int $sell_in,
+        public int $quality
     ) {
         $this->validateQuality($quality);
     }
@@ -31,16 +31,6 @@ final class Item
     public function getName(): string
     {
         return $this->name;
-    }
-
-    public function getSellIn(): int
-    {
-        return $this->sell_in;
-    }
-
-    public function setSellIn(int $sell_in): void
-    {
-        $this->sell_in = $sell_in;
     }
 
     public function getQuality(): int

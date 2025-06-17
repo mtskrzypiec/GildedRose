@@ -6,15 +6,15 @@ namespace App\Updater\Factory;
 
 use App\Updater\Service\AgedBrieUpdater;
 use App\Updater\Service\SulfurasUpdater;
-use App\Updater\Register\UpdaterRegister;
+use App\Updater\Register\UpdaterRegistry;
 use App\Updater\Service\StandardItemUpdater;
 use App\Updater\Service\BackstagePassUpdater;
 
 class UpdaterRegisterFactory
 {
-    public function create(): UpdaterRegister
+    public function create(): UpdaterRegistry
     {
-        $updaterRegister = new UpdaterRegister();
+        $updaterRegister = new UpdaterRegistry();
         $updaterRegister->add(new AgedBrieUpdater());
         $updaterRegister->add(new SulfurasUpdater());
         $updaterRegister->add(new BackstagePassUpdater());

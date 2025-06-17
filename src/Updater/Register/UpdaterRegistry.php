@@ -7,7 +7,7 @@ namespace App\Updater\Register;
 use App\Updater\Enum\UpdaterType;
 use App\Updater\Interface\ItemUpdaterInterface;
 
-class UpdaterRegister
+class UpdaterRegistry
 {
     /** @var ItemUpdaterInterface[] $updaters */
     private array $updaters = [];

@@ -5,21 +5,23 @@ declare(strict_types=1);
 namespace App;
 
 use App\Updater\Enum\UpdaterType;
-use App\Updater\ValueObject\Item;
+use App\Updater\Factory\UpdaterRegisterFactory;
 use App\Updater\Register\UpdaterRegister;
+use App\Updater\Register\UpdaterRegistry;
 
 final readonly class GildedRose
 {
-    public function __construct(private UpdaterRegister $updaterRegister)
-    {
-    }
-
     public function updateQuality(Item $item): void
     {
-        $updater = $this->updaterRegister->getUpdater(
+        $updater = $this->getUpdaterRegistry()->getUpdater(
             UpdaterType::fromName($item->getName())
         );
 
         $updater->update($item);
+    }
+
+    public function getUpdaterRegistry(): UpdaterRegistry
+    {
+        return (new UpdaterRegisterFactory())->create();
     }
 }

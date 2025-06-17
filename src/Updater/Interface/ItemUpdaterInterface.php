@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Updater\Interface;
 
+use App\Item;
 use App\Updater\Enum\UpdaterType;
-use App\Updater\ValueObject\Item;
 
 interface ItemUpdaterInterface
 {

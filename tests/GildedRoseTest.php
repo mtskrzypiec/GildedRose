@@ -1,36 +1,28 @@
 <?php
 
 use App\GildedRose;
-use App\Updater\Factory\UpdaterRegisterFactory;
+use App\Item;
 use PHPUnit\Framework\TestCase;
-use App\Updater\ValueObject\Item;
-use App\Updater\Register\UpdaterRegister;
 
 class GildedRoseTest extends TestCase
 {
     /**
      * @dataProvider itemsProvider
+     * @param string $name
+     * @param int $sellIn
+     * @param int $quality
+     * @param int $expectedSellIn
+     * @param int $expectedQuality
      */
-    public function testUpdateQualityTest(
-        string $name,
-        int    $sellIn,
-        int    $quality,
-        int    $expectedSellIn,
-        int    $expectedQuality
-    ): void
+    public function testUpdateQualityTest($name, $sellIn, $quality, $expectedSellIn, $expectedQuality): void
     {
-        $item = Item::create(
-            name: $name,
-            sell_in: $sellIn,
-            quality: $quality
-        );
-        $updaterRegistryFactory = new UpdaterRegisterFactory();
-        $gildedRose = new GildedRose($updaterRegistryFactory->create());
+        $item = new Item($name, $sellIn, $quality);
 
+        $gildedRose = new GildedRose();
         $gildedRose->updateQuality($item);
 
-        $this->assertEquals($expectedSellIn, $item->getSellIn());
-        $this->assertEquals($expectedQuality, $item->getQuality());
+        $this->assertEquals($expectedSellIn, $item->sell_in);
+        $this->assertEquals($expectedQuality, $item->quality);
     }
 
     public function itemsProvider(): array

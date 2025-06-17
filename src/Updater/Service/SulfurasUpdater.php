@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Updater\Service;
 
+use App\Item;
 use App\Updater\Enum\UpdaterType;
-use App\Updater\ValueObject\Item;
 use App\Updater\Interface\ItemUpdaterInterface;
 
 class SulfurasUpdater implements ItemUpdaterInterface

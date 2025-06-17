@@ -4,38 +4,37 @@ declare(strict_types=1);
 
 namespace App\Updater\Service;
 
+use App\Item;
 use App\Updater\Enum\UpdaterType;
-use App\Updater\ValueObject\Item;
 use App\Updater\Interface\ItemUpdaterInterface;
 
 class BackstagePassUpdater implements ItemUpdaterInterface
 {
     public function update(Item $item): void
     {
-        $sellIn = $item->getSellIn();
         $quality = $item->getQuality();
 
-        if ($sellIn <= 0) {
+        if ($item->sell_in <= 0) {
             $item->setQuality(0);
-            $item->setSellIn($sellIn - 1);
+            $item->sell_in--;
             return;
         }
 
         if ($quality < 50) {
             $quality++;
 
-            if ($sellIn <= 10 && $quality < 50) {
+            if ($item->sell_in <= 10 && $quality < 50) {
                 $quality++;
             }
 
-            if ($sellIn <= 5 && $quality < 50) {
+            if ($item->sell_in <= 5 && $quality < 50) {
                 $quality++;
             }
 
             $item->setQuality($quality);
         }
 
-        $item->setSellIn($sellIn - 1);
+        $item->sell_in--;
     }
 
     public function getUpdaterType(): UpdaterType
