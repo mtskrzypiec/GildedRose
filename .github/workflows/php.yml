@@ -36,7 +36,7 @@ jobs:
         run: vendor/bin/phpcs
 
       - name: Unit tests
-        run: vendor/bin/phpunit --display-warnings
+        run: vendor/bin/phpunit
 
       - name: PHPStan
         run: vendor/bin/phpstan analyse -l 10 src
