@@ -1,5 +1,8 @@
 {
     "name": "qafoo/gilded-rose-kata",
+    "description": "Gilded Rose Kata",
+    "type": "project",
+    "license": ["MIT"],
     "autoload": {
         "psr-4": {
             "Tests\\": "tests/",
